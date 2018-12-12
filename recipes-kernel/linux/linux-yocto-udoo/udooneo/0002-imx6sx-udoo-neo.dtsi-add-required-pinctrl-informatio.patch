@@ -1,0 +1,82 @@
+From 068eb93be46fbab55d5dfc494c9f035c15ec1be9 Mon Sep 17 00:00:00 2001
+From: Francesco Giancane <francesco.giancane@polito.it>
+Date: Thu, 6 Dec 2018 11:51:49 +0100
+Subject: [PATCH 2/3] imx6sx-udoo-neo.dtsi: add required pinctrl informations
+ for exporting gpios.
+
+---
+ arch/arm/boot/dts/imx6sx-udoo-neo.dtsi | 58 ++++++++++++++++++++++++++
+ 1 file changed, 58 insertions(+)
+
+diff --git a/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi b/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
+index bb45baa4a06d..5541a2516527 100644
+--- a/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
++++ b/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
+@@ -413,6 +413,64 @@
+ 			<MX6SX_PAD_SD3_CLK__USDHC3_CLK		0x10069>,
+ 			<MX6SX_PAD_CSI_MCLK__OSC32K_32K_OUT	0x10059>;
+ 	};
++
++	pinctrl_gpio1: gpio1grp {
++		fsl,pins =
++			<MX6SX_PAD_GPIO1_IO06__GPIO1_IO_6	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_GPIO1_IO07__GPIO1_IO_7	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_DATA00__GPIO1_IO_14	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_DATA01__GPIO1_IO_15	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_DATA02__GPIO1_IO_16	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_DATA03__GPIO1_IO_17	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_DATA04__GPIO1_IO_18	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_DATA05__GPIO1_IO_19	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_DATA06__GPIO1_IO_20	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_DATA07__GPIO1_IO_21	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_HSYNC__GPIO1_IO_22	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_PIXCLK__GPIO1_IO_24	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_CSI_VSYNC__GPIO1_IO_25	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>;
++	};
++
++	pinctrl_gpio4: gpio4grp {
++		fsl,pins =
++			<MX6SX_PAD_NAND_DATA06__GPIO4_IO_10	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_NAND_DATA07__GPIO4_IO_11	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_QSPI1A_DQS__GPIO4_IO_20	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_QSPI1A_SS1_B__GPIO4_IO_23	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_QSPI1B_DQS__GPIO4_IO_28	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_QSPI1B_SS1_B__GPIO4_IO_31	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>;
++	};
++
++	pinctrl_gpio6: gpio6grp {
++		fsl,pins =
++			<MX6SX_PAD_SD4_CLK__GPIO6_IO_12		(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_SD4_CMD__GPIO6_IO_13		(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_SD4_DATA0__GPIO6_IO_14	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_SD4_DATA1__GPIO6_IO_15	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_SD4_DATA2__GPIO6_IO_16	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_SD4_DATA3__GPIO6_IO_17	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_SD4_DATA6__GPIO6_IO_20	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_SD4_DATA7__GPIO6_IO_21	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>,
++			<MX6SX_PAD_SD4_RESET_B__GPIO6_IO_22	(GPIO_TRANSITORY | GPIO_ACTIVE_HIGH)>;
++	};
++};
++
++&gpio1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio1>;
++	status = "okay";
++};
++
++&gpio4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio4>;
++	status = "okay";
++};
++
++&gpio6 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio6>;
++	status = "okay";
+ };
+ 
+ &uart1 {
+-- 
+2.19.2
+

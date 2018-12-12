@@ -1,0 +1,105 @@
+From 61e67b9a19b02eaad13b0e234506be62f3613a09 Mon Sep 17 00:00:00 2001
+From: Francesco Giancane <francesco.giancane@polito.it>
+Date: Tue, 27 Nov 2018 16:42:37 +0100
+Subject: [PATCH 1/3] Added Brick Sensors for UDOO Neo on i2c bus
+
+Signed-off-by: Francesco Giancane <francesco.giancane@polito.it>
+---
+ arch/arm/boot/dts/imx6sx-udoo-neo.dtsi | 74 ++++++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+
+diff --git a/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi b/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
+index 53b3eac94f0d..bb45baa4a06d 100644
+--- a/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
++++ b/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
+@@ -225,6 +225,62 @@
+ 	};
+ };
+ 
++&i2c2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c2>;
++	clock-frequency = <100000>;
++	status = "okay";
++
++	barometer: mpl3115@60 {
++		//Brick Barometer Sensor
++		compatible = "fsl,mpl3115";
++		reg = <0x60>;
++	};
++
++	tsl2561: tsl2561@29 {
++		//Brick Light Sensor
++		compatible = "amstaos,tsl2561";
++		reg = <0x29>;
++	};
++
++	lm75: lm75@48 {
++		//Brick Temperature Sensor
++		compatible = "national,lm75";
++		reg = <0x48>;
++	};
++
++	si7006: lm75@48 {
++		//Brick Humidity Sensor
++		compatible = "silabs,si7020";
++		reg = <0x40>;
++	};
++};
++
++&i2c3 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c3>;
++	clock-frequency = <100000>;
++};
++
++&i2c4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c4>;
++	clock-frequency = <100000>;
++	status = "okay";
++
++	/*
++	accelerometer: fxos8700@1e {
++		compatible = "fsl,fxos8700";
++		reg = <0x1e>;
++	};
++
++	gyroscope: fxas2100x@20 {
++		compatible = "fsl,fxas2100x";
++		reg = <0x20>;
++	};
++	*/
++};
++
+ &iomuxc {
+ 	pinctrl_bt_reg: btreggrp {
+ 		fsl,pins =
+@@ -256,6 +312,24 @@
+ 			<MX6SX_PAD_GPIO1_IO01__I2C1_SDA		0x4001b8b1>;
+ 	};
+ 
++	pinctrl_i2c2: i2c2grp {
++		fsl,pins =
++			<MX6SX_PAD_GPIO1_IO03__I2C2_SDA		0x4001b8b1>,
++			<MX6SX_PAD_GPIO1_IO02__I2C2_SCL		0x4001b8b1>;
++	};
++
++	pinctrl_i2c3: i2c3grp {
++		fsl,pins =
++			<MX6SX_PAD_KEY_ROW4__I2C3_SDA		0x4001b8b1>,
++			<MX6SX_PAD_KEY_COL4__I2C3_SCL		0x4001b8b1>;
++	};
++
++	pinctrl_i2c4: i2c4grp {
++		fsl,pins =
++			<MX6SX_PAD_USB_H_DATA__I2C4_SDA		0x4001b8b1>,
++			<MX6SX_PAD_USB_H_STROBE__I2C4_SCL	0x4001b8b1>;
++	};
++
+ 	pinctrl_uart1: uart1grp {
+ 		fsl,pins =
+ 			<MX6SX_PAD_GPIO1_IO04__UART1_TX		0x1b0b1>,
+-- 
+2.19.2
+

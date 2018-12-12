@@ -1,0 +1,29 @@
+From 4d75fa45d8e07b9c0a8a1f3f11168fba99321202 Mon Sep 17 00:00:00 2001
+From: Francesco Giancane <francesco.giancane@polito.it>
+Date: Tue, 11 Dec 2018 21:21:59 +0100
+Subject: [PATCH 3/3] bluetooth: Enable bluetooth on serial port using HCI_LL
+
+Texas Instruments WL1831 chip requires the HCI_LL driver.
+---
+ arch/arm/boot/dts/imx6sx-udoo-neo.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi b/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
+index 5541a2516527..e0e1baf75b43 100644
+--- a/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
++++ b/arch/arm/boot/dts/imx6sx-udoo-neo.dtsi
+@@ -491,6 +491,11 @@
+ 	pinctrl-0 = <&pinctrl_uart3>;
+ 	uart-has-rtscts;
+ 	status = "okay";
++	bluetooth {
++		compatible = "ti,wl1831-st";
++		max-speed = <3000000>;
++		//shutdown-gpios = <&gpio2 17 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ /* Arduino serial */
+-- 
+2.19.2
+
