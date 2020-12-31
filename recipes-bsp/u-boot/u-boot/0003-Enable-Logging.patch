@@ -1,0 +1,13 @@
+diff --git a/configs/udoo_neo_defconfig b/configs/udoo_neo_defconfig
+index 51c7c4997b..840c3d5ec3 100644
+--- a/configs/udoo_neo_defconfig
++++ b/configs/udoo_neo_defconfig
+@@ -17,6 +18,7 @@ CONFIG_SPL_TEXT_BASE=0x00908000
+ CONFIG_DISTRO_DEFAULTS=y
+ CONFIG_SYS_EXTRA_OPTIONS="IMX_CONFIG=arch/arm/mach-imx/spl_sd.cfg"
+ CONFIG_BOOTCOMMAND="run findfdt; run distro_bootcmd"
++CONFIG_LOG=y
+ CONFIG_BOUNCE_BUFFER=y
+ CONFIG_BOARD_EARLY_INIT_F=y
+ CONFIG_SPL_ENV_SUPPORT=y
+

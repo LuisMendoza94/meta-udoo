@@ -1,0 +1,12 @@
+diff --git a/configs/udoo_neo_defconfig b/configs/udoo_neo_defconfig
+index 51c7c4997b..1449642b10 100644
+--- a/configs/udoo_neo_defconfig
++++ b/configs/udoo_neo_defconfig
+@@ -10,6 +10,7 @@ CONFIG_SPL_SERIAL_SUPPORT=y
+ CONFIG_ENV_SIZE=0x2000
+ CONFIG_ENV_OFFSET=0x80000
+ CONFIG_NR_DRAM_BANKS=1
++CONFIG_IMX_BOOTAUX=y
+ CONFIG_SPL=y
+ CONFIG_SPL_LIBDISK_SUPPORT=y
+ # CONFIG_CMD_BMODE is not set
