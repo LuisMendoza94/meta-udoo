@@ -7,6 +7,7 @@ SRC_URI = "\
 	file://0001-Added-Brick-Sensors-for-UDOO-Neo-on-i2c-bus.patch \
 	file://0002-imx6sx-udoo-neo.dtsi-add-required-pinctrl-informatio.patch \
 	file://0003-bluetooth-Enable-bluetooth-on-serial-port-using-HCI_.patch \
+	file://0004-fix-dtc-lexer.patch \
 	"
 
 LINUX_VERSION ?= "4.19.7"
